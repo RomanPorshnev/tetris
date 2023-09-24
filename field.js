@@ -1,3 +1,5 @@
+import {Sound} from "./audio.js";
+
 export class Field {
     #field
     #figureHasLanded
@@ -7,12 +9,15 @@ export class Field {
     scores
     level
     #scoreLevel
+    #sound
     constructor() {
+        this.#sound = new Sound()
         this.#scoreLevel = 500
         this.#fieldHeight = 20
         this.#fieldWidth = 10
         this.#field = []
         this.scores = 0
+        this.level = 1
         for (let i = 0; i < this.#fieldHeight + 2; i++) {
             this.#field[i] = []
             for(let j = 0; j < this.#fieldWidth + 2; j++){
@@ -41,7 +46,7 @@ export class Field {
             return false
         }
     }
-    // ещё один параметр - это смещение
+
     #checkInstallOfFigure(startX, startY, endX, endY, figure, shiftX){
         let figureCanBeInserted = true
         for(let y = startY; y < endY; y++){
@@ -76,6 +81,7 @@ export class Field {
         else{
             this.#figureHasLanded = true
             this.#gameOver = true
+            this.#sound.gameOver()
         }
     }
 
@@ -127,8 +133,28 @@ export class Field {
                 linesToDelete[i]++
             }
         }
+        this.#sound.linesDelete()
     }
-    searchForPoints(){
+
+    #addScores(linesToDelete){
+        switch (linesToDelete.length){
+            case 4:
+                this.scores += 1500
+                break
+            case 3:
+                this.scores += 700
+                break
+            case 2:
+                this.scores += 300
+                break
+            case 1:
+                this.scores += 100
+                break
+        }
+        this.level = 1 + Math.floor(this.scores / this.#scoreLevel)
+    }
+
+    searchForScores(){
         let linesToDelete = []
         let dontNeedToDelete = false
         for(let y = this.#fieldHeight; y > 0; y--){
@@ -145,21 +171,7 @@ export class Field {
         if(linesToDelete.length > 0){
             this.#deleteLines(linesToDelete)
         }
-        switch (linesToDelete.length){
-            case 4:
-                this.scores += 1500
-                break
-            case 3:
-                this.scores += 700
-                break
-            case 2:
-                this.scores += 300
-                break
-            case 1:
-                this.scores += 100
-                break
-        }
-        this.level = Math.floor(this.scores / this.#scoreLevel)
+        this.#addScores(linesToDelete)
     }
 
     #shiftFigureDown(figure, xBorder, yBorder){
@@ -173,6 +185,7 @@ export class Field {
             else{
                 yBorder = Math.min(figure.y + figure.size, this.#fieldHeight + 2)
                 this.#drawFigure(0, figure.y, xBorder, yBorder, figure, -figure.x)
+                this.#sound.land()
                 this.#figureHasLanded = true
             }
         }
@@ -184,6 +197,7 @@ export class Field {
             else{
                 yBorder = Math.min(figure.y + figure.size, this.#fieldHeight + 2)
                 this.#drawFigure(figure.x, figure.y, xBorder, yBorder, figure, 0)
+                this.#sound.land()
                 this.#figureHasLanded = true
             }
         }
