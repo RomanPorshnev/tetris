@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Tetris';
+    src: url('../fonts/Handjet-ExtraBold.ttf');
+}
+
+* {
+    font-family: 'Tetris', sans-serif;
+}
+
+input{
+    font-size: x-large;
+}
+
+body {
+    text-align: center;
+    font-size: 80px;
+    color: navajowhite;
+    background-image: url("../img/new_background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра Тетрис</title>
+    <link rel="stylesheet" href="../css/game.css">
+</head>
+<body>
+    <div id="playerInfo">
+        <p>Игрок: <span id="playerName"></span></p><br>
+        <p>Счёт: <span id="score"></span></p><br>
+        <p>Уровень: <span id="level"></span></p><br>
+    </div>
+    <div id="gameOver">
+        GAME OVER
+    </div>
+    <div id="recordTable">
+        <p>Таблица рекордов: </p>
+    </div>
+    <div id="nextFigure">
+        <p id="nextFigureText">Следующая фигура: </p>
+        <canvas width="162" height="162" id="nextFigureWindow"></canvas><br>
+        <p id="controller">
+            W - поворот фигуры на 90 градусов<br>
+            A - сдвиг фигуры влево<br>
+            S - сдвиг фигуры вниз<br>
+            D - сдвиг фигуры вправо<br>
+            Пробел - "уронить" фигуру<br>
+        </p><br>
+    </div>
+    <div>
+        <button type="button" id="goToStartPage" onclick="history.back()">Авторизация</button>
+    </div>
+    <canvas width="402" height="672" id="game"></canvas>
+    <script src="../scripts/main.js" type="module"></script>
+    <script src="../scripts/game.js" type="module"></script>
+    <script src="../scripts/figure.js" type="module"></script>
+    <script src="../scripts/field.js" type="module"></script>
+    <script src="../scripts/display.js" type="module"></script>
+    <script src="../scripts/audio.js" type="module"></script>
+</body>
+</html>

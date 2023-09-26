@@ -1,0 +1,74 @@
+body {
+    color: navajowhite;
+    background-image: url("../img/new_background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#game{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition : opacity 2s;
+}
+
+#nextFigureText{
+    font-size: 50px;
+}
+
+#recordTable{
+    position: absolute;
+    top: 0;
+    left: 37%;
+    font-size: 50px;
+    opacity: 0;
+    transition: opacity 2s;
+}
+#nextFigure{
+    position: absolute;
+    left: 68%;
+    top: 0;
+}
+
+#controller{
+    font-size: 25px;
+}
+
+#goToStartPage{
+    position: absolute;
+    top: 70%;
+    left: 68%;
+    font-size: 30px;
+}
+#gameOver{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+#playerInfo{
+    font-size: 50px;
+}
+
+@font-face {
+    font-family: 'Tetris';
+    src: url('../fonts/Handjet-ExtraBold.ttf');
+}
+
+* {
+    font-family: 'Tetris', sans-serif;
+}
